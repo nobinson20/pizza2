@@ -3,8 +3,8 @@
 # http://goddaehee.tistory.com/213
 spring:
   datasource:
-    url: "jdbc:postgresql://localhost:8888/pizza"
-    username: postgres
+    url: "jdbc:postgresql://pg-115-r1.cjvzcocns1hm.ap-northeast-2.rds.amazonaws.com:5432/springboot"
+    username: nobinson20
     password: ahqudgh20
 
   jpa:
