@@ -1,0 +1,56 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
+
+  <!-- 여기서부터 헤더 시작 -->
+  <header id="header" th:fragment="headerFragment">
+
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">NY Pizza</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item" >
+            <a class="nav-link" href="/menus">피자</a>
+          </li>
+          <li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')">
+            <a class="nav-link" href="/ingredients">재료</a>
+          </li>
+        </ul>
+
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/signup">회원 가입</a>
+          </li>
+        </ul>
+
+
+        <ul class="navbar-nav ml-auto">
+          <li sec:authorize="isAnonymous()" class="nav-item">
+            <a class="nav-link" href="/signin">로그인</a>
+          </li>
+
+          <li sec:authorize="isAuthenticated()" class="nav-item">
+            <!-- 로그아웃 설정 경로와 일치하는지 확인! -->
+            <a class="nav-link" th:href="@{/users/logout}">로그아웃</a>
+          </li>
+        </ul>
+
+        <!-- 인증 사용자만, 보여 줌 -->
+        <ul class="navbar-nav ml-auto">
+          <li sec:authorize="isAuthenticated()" class="nav-item">
+            <a class="nav-link" th:href="@{/carts}">장바구니</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+  </header> <!-- 여기까지 헤더 -->
+
+</html>

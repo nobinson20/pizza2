@@ -1,0 +1,47 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layouts/default"
+>
+  <div layout:fragment="content">
+    <div class="jumbotron">
+      <h1>피자 메뉴 목록</h1>
+      <hr/>
+      <a class="btn btn-primary" href="/menus/new">추가</a>
+    </div>
+
+    <div class="container">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>메뉴명</th>
+            <th>가격</th>
+            <th>상세</th>
+          </tr>
+        </thead>
+
+        <tbody>
+
+          <!-- for each-->
+          <tr th:object="${menu}">
+            <td th:text="*{id}">PK</td>
+            <td th:text="*{name}">Name</td>
+            <td th:text="*{price}">Name</td>
+            <td>
+              <a th:each="ingredient: ${menu.ingredients}"
+                 th:href="@{/ingredients/{id} (id=${ingredient.id})}"
+                 th:text="${ingredient.name + ' / '}">
+                각 재료
+              </a>
+            </td>
+
+
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="btn btn-light">
+      <a th:href="@{/ingredients}"> 재료 목록</a>
+    </div>
+  </div>
+</html>

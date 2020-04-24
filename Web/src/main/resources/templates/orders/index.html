@@ -1,0 +1,35 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layouts/default">
+
+  <div class="container-fluid" layout:fragment="content">
+    <!-- jumbotron -->
+    <div class="jumbotron">
+      <h1>주문 목록</h1>
+    </div>
+
+    <!-- table -->
+    <table class="table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>내역</th>
+          <th>주문일시</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr th:each="order: ${orders}" th:object="${order}">
+          <td th:text="*{id}">주문 ID</td>
+          <td>
+            <span th:each="menu: *{menus}" th:text="|${menu.name}(${menu.price}원) / |"></span>
+          </td>
+          <td th:text="*{createdAt}">YYYY-MM-dd HH:mm:ss</td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+</html>

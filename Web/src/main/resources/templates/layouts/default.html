@@ -1,0 +1,30 @@
+<!--
+
+이 파일이 thymeleaf 레이아웃을 잡아주는 핵심파일이 된다.
+
+head th:replace는 head 영역의 부속 페이지를 말한다. 부속페이지는 fragments/config(html을 생략한다.) 그리고 그 파일의 configFragment 태그를 잘라와 사용한다는 의미이다.
+header footer도 비슷한 의미이다.
+
+layout이 되는 html의 태그는 xmlns:layout=”http://www.ultraq.net.nz/thymeleaf/layout"를 삽입해야 한다.
+layout:fragment=”content” 부분은 서버의 요청별로 달라지는 컨텐츠 페이지가 된다.(welcome.html)
+
+-->
+
+<!DOCTYPE html>
+<html lagn="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+  <!-- 설정 파일 -->
+  <head th:replace="fragments/config :: configFragment"></head>
+  <body>
+    <!-- 헤더 -->
+    <header th:replace="fragments/header :: headerFragment"></header>
+
+    <!-- 컨텐츠 -->
+    <div layout:fragment="content"></div>
+
+    <!-- 푸터 -->
+    <footer th:replace="fragments/footer :: footerFragment"></footer>
+  </body>
+</html>

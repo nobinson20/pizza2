@@ -1,0 +1,39 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layouts/default"
+>
+  <div layout:fragment="content">
+    <div class="jumbotron">
+      <h1>재료 추가</h1>
+      <hr/>
+    </div>
+    <div class="container">
+      <form method="post" action="/ingredients">
+        <!-- name -->
+        <div class="form-group">
+          <label>재료명</label>
+          <input name="name" type="text" placeholder="재료명을 입력하세요!" class="form-control">
+        </div>
+
+        <!-- type -->
+        <div class="form-group">
+          <label>종류</label>
+          <select name="type" class="form-control">
+            <option value="dough">도우</option>
+            <option value="sauce">소스</option>
+            <option value="cheese">치즈</option>
+            <option value="topping">토핑</option>
+          </select>
+        </div>
+
+        <!-- name -->
+        <div class="form-group">
+          <label>가격</label>
+          <input name="price" type="text" placeholder="가격을 입력하세요!" class="form-control">
+        </div>
+
+        <button type="submit">제출</button>
+      </form>
+    </div>
+  </div>
+</html>

@@ -1,0 +1,33 @@
+
+<!--
+
+head의 공통적인 부분을 담당하는 페이지.
+
+css, js 파일따위를 관리 할 수 있다.
+
+특의한 점은 <th:block layout:fragment=”css”> <th:block layout:fragment=”script”> 인데,
+레이아웃의 content가 되는 index.html에 작성된 css나, js를 가져와서 적용하는 부분이다.
+
+-->
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+  <!-- 설정 시작 -->
+  <head th:fragment="configFragment">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- 공용 CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/custom.css">
+
+    <!-- 공통 JS 파일 -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+  </head> <!-- 설정 끝 -->
+
+</html>

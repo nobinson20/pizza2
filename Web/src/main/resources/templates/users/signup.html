@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layouts/default">
+
+  <!-- 컨텐츠 시작 -->
+  <div layout:fragment="content">
+    <div class="container">
+      <h1>회원 가입</h1>
+
+
+      <form method="post" th:action="@{/users/signup}" th:object="${userForm}">
+        <div class="form-group">
+          <label>이메일</label>
+          <!--          <input name="email" type="email" class="form-control">-->
+
+          <!-- th:field 사용 -->
+          <input th:field="*{email}" type="email" class="form-control">
+
+          <!-- 에러 메세지 -->
+          <div th:if="${#fields.errors('email')}">
+            <small th:each="msg: ${#fields.errors('email')}" th:text="${msg}" class="form-text text-danger"></small>
+          </div>
+          <small class="form-text text-muted">We'll never share your email with anyone else.</small>
+        </div>
+
+        <div class="form-group">
+          <label>비밀번호</label>
+
+          <!-- th:field 사용 -->
+          <input th:field="*{password}" type="password" class="form-control">
+
+          <!-- 에러 메세지 -->
+          <div th:if="${#fields.errors('password')}">
+            <small th:each="msg: ${#fields.errors('password')}" th:text="${msg}" class="form-text text-danger"></small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>비밀번호 확인</label>
+
+          <!-- th:field 사용 -->
+          <input th:field="*{confirm}" type="password" class="form-control">
+
+          <!-- 에러 메세지 -->
+          <div th:if="${#fields.errors('confirm')}">
+            <small th:each="msg: ${#fields.errors('confirm')}" th:text="${msg}" class="form-text text-danger"></small>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary">제출</button>
+      </form>
+    </div>
+  </div> <!-- 컨텐츠 끝 -->
+
+  </div>
+</html>

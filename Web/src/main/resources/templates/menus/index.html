@@ -1,0 +1,60 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.w3.org/1999/xhtml"
+      layout:decorator="layouts/default"
+>
+  <div layout:fragment="content">
+    <div class="jumbotron">
+      <h1>피자 메뉴 목록</h1>
+      <hr/>
+      <a class="btn btn-primary" href="/menus/new">추가</a>
+    </div>
+
+    <div class="container">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>메뉴명</th>
+            <th>가격</th>
+            <th>수정/삭제</th>
+            <th>상세</th>
+          </tr>
+        </thead>
+
+        <tbody>
+
+          <!-- for each-->
+          <tr th:each="item: ${menus}">
+            <td th:text="${item.id}">PK</td>
+            <td>
+              <a th:href="@{/menus/{id}(id = ${item.id})}" th:text="${item.name}"></a>
+            </td>
+            <td th:text="${item.price + '원'}">Price</td>
+
+            <td>
+              <a th:href="@{/carts/{id}(id = ${item.id})}">장바구니 담기</a>
+            </td>
+<!--            관리자 전용-->
+            <td sec:authorize="hasRole('ROLE_ADMIN')">
+              <a th:href="@{/menus/edit/{id}(id=${item.id})}" class="btn btn-info">수정</a>
+              <a th:href="@{/menus/delete/{id}(id=${item.id})}" class="btn btn-danger">삭제</a>
+            </td>
+
+
+            <td>
+                <span th:each="ingredient: ${item.ingredients}" th:text="${ingredient.name + ' / '}">
+                    각 재료
+                </span>
+            </td>
+
+
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="btn btn-light">
+      <a th:href="@{/ingredients}"> 재료 목록</a>
+    </div>
+  </div>
+</html>

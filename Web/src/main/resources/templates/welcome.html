@@ -1,0 +1,24 @@
+<!doctype html>
+<html
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorator="layouts/default">
+  <div layout:fragment="content">
+    <div class="jumbotron">
+      <h1>Welcome!</h1>
+    </div>
+    <div class="btn btn-light">
+      <a th:href="@{/ingredients}"> 재료 목록</a>
+    </div>
+    <div class="btn btn-light">
+      <a th:href="@{/menus}"> 피자 메뉴 목록</a>
+    </div>
+    <div class="btn btn-light">
+      <a th:href="@{/templates/users}">회원 가입</a>
+    </div>
+    <div class="btn btn-light">
+      <a th:href="@{/templates/users/login}">로그인</a>
+    </div>
+  </div>
+
+</html>

@@ -1,0 +1,56 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layouts/default">
+
+  <div layout:fragment="content">
+    <!-- jumbotron -->
+    <div class="jumbotron">
+      <h1>내 장바구니</h1>
+    </div>
+
+    <form method="post" th:action="@{/orders}">
+      <!-- 테이블 -->
+      <table class="table" th:object="${cart}">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>피자명</th>
+            <th>가격</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="menu: *{menus}">
+            <td th:text="${menuStat.count}">1</td>
+            <td th:text="${menu.name}">페퍼로니 피자</td>
+            <!-- 문자열 연결 및 금액 콤마 넣기, https://gigas-blog.tistory.com/127 -->
+            <td th:text="|${#numbers.formatDecimal(menu.price, 3, 0)}원|">9,900원</td>
+          </tr>
+        </tbody>
+
+        <tfoot>
+          <tr>
+            <td>총 가격</td>
+            <td></td>
+            <td th:text="|${#numbers.formatDecimal(totalPrice, 0, 'COMMA',2,'POINT')}원|">0원</td>
+          </tr>
+        </tfoot>
+      </table>
+
+      <div class="form-group">
+        <label>배달 주소</label>
+        <textarea name="address" class="form-control" rows="3">
+          신림동 어딘가
+        </textarea>
+      </div>
+
+
+      <!-- 주문 id를 히든 값으로 저장-->
+      <input type="hidden" name="id" th:value="${cart.id}" />
+
+      <button type="submit" class="btn btn-primary">전송</button>
+    </form>
+
+  </div>
+</html>

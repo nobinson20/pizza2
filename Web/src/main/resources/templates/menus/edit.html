@@ -1,0 +1,68 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layouts/default"
+>
+  <div layout:fragment="content">
+    <div class="jumbotron">
+      <h1>메뉴 수정</h1>
+      <hr/>
+    </div>
+    <div class="container">
+      <form method="post" th:action="@{/menus/update/{id}(id = ${menu.id})}">
+        <!-- Name -->
+        <div class="form-group">
+          <label>메뉴명</label>
+          <input name="name" type="text" class="form-control" th:value="${menu.name}"/>
+        </div>
+        <!-- Price -->
+        <div class="form-group">
+          <label>가격</label>
+          <input name="price" type="text" class="form-control" th:value="${menu.price}"/>
+        </div>
+        <!-- Detail -->
+        <div class="container-md">
+          <label>재료 상세</label>
+          <div class="ingredient-group" id="doughs">
+            <h3>도우</h3>
+            <div th:each="ingredient : ${dough}">
+              <input name="ingredients" type="radio" th:value="${ingredient.id}"
+              />
+              <span th:text="${ingredient.name}">INGREDIENT</span><br/>
+            </div>
+          </div>
+          <hr/>
+          <div class="ingredient-group" id="sauces">
+            <h3>소스</h3>
+            <div th:each="ingredient : ${sauce}">
+              <input name="ingredients" type="checkbox" th:value="${ingredient.id}"
+              />
+              <span th:text="${ingredient.name}">INGREDIENT</span><br/>
+            </div>
+          </div>
+          <hr/>
+          <div class="ingredient-group" id="cheeses">
+            <h3>치즈</h3>
+            <div th:each="ingredient : ${cheese}">
+              <input name="ingredients" type="checkbox" th:value="${ingredient.id}"
+              />
+              <span th:text="${ingredient.name}">INGREDIENT</span><br/>
+            </div>
+          </div>
+          <hr/>
+          <div class="ingredient-group" id="toppings">
+            <h3>토핑</h3>
+            <div th:each="ingredient : ${topping}">
+              <input name="ingredients" type="checkbox" th:value="${ingredient.id}"
+              />
+              <span th:text="${ingredient.name}">INGREDIENT</span><br/>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Submit -->
+        <button type="submit">전송</button>
+      </form>
+    </div>
+  </div>
+</html>
